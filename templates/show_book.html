@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ book.title }} - Book Details</title>
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1>{{ book.title }}</h1>
+      <div class="book-details">
+        {% if book.isbn %}
+          <img src="{{ url_for('static', filename='images/' + book.isbn) }}" alt="Book cover" class="book-image">
+        {% else %}
+          <img src="{{ url_for('static', filename='images/default_cover.jpg') }}" alt="Default cover" class="book-image">
+        {% endif %}
+        <p><strong>Author:</strong> {{ author.name }}</p>
+        <p><strong>Publication Year:</strong> {{ book.publication_year }}</p>
+        {% if book.isbn %}
+          <p><strong>ISBN Image:</strong> <img src="{{ url_for('static', filename='images/' + book.isbn) }}" alt="ISBN Image"></p>
+        {% endif %}
+        <p><strong>Description:</strong> Add a description field here if needed!</p>
+        <a href="{{ url_for('home_page') }}" class="btn btn-primary">Back to Home</a>
+      </div>
+    </div>
+  </body>
+</html>
